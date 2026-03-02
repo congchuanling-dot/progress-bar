@@ -35,3 +35,6 @@ http://localhost:8080/
 
 前后端会一起启动和提供服务，部署只需要打包一个 jar 放到服务器上运行即可。
 
+前端效果图：
+
+![](C:\Users\从传领\AppData\Roaming\marktext\images\2026-03-02-23-09-12-image.png)
