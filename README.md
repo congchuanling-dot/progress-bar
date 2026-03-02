@@ -37,4 +37,5 @@ http://localhost:8080/
 
 前端效果图：
 
-![front-pic.png](C:\Users\从传领\Desktop\beliveOnly\progress-bar\images\front-pic.png)
+<img width="1015" height="931" alt="front-pic" src="https://github.com/user-attachments/assets/b073615c-c138-401f-b613-e39a6bd99e5f" />
+
