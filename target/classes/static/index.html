@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>行为进度条</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <h1>我的行为进度条</h1>
+
+    <section class="card">
+        <h2>行为配置</h2>
+        <div class="form-row">
+            <label for="behaviorName">行为名称</label>
+            <input id="behaviorName" type="text" placeholder="例如：学习英语 30 分钟">
+        </div>
+        <div class="form-row">
+            <label for="stepPercent">每次点击增加 (%)</label>
+            <input id="stepPercent" type="number" min="1" max="100" step="1" value="10">
+        </div>
+        <button id="saveConfigBtn" class="btn primary">保存设置</button>
+        <p class="hint">提示：修改配置后，进度会从 0% 重新开始。</p>
+    </section>
+
+    <section class="card">
+        <h2>进度</h2>
+        <p id="currentBehavior" class="behavior-text">当前行为：加载中...</p>
+        <div class="progress-bar">
+            <div id="progressFill" class="progress-fill">
+                <span id="progressLabel" class="progress-label">0%</span>
+            </div>
+        </div>
+        <p id="countInfo" class="count-info">已完成 0 次</p>
+        <button id="clickBtn" class="btn">完成一次行为</button>
+    </section>
+
+    <section class="card">
+        <h2>使用说明</h2>
+        <ul class="usage">
+            <li>在上面设置你想养成的行为和每次点击增加的百分比。</li>
+            <li>每次完成一次行为，就点一次「完成一次行为」，进度条会带动画前进。</li>
+            <li>进度达到 100% 就代表这个阶段目标完成，可以重新配置下一阶段。</li>
+        </ul>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
