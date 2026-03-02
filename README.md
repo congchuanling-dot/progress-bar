@@ -37,4 +37,4 @@ http://localhost:8080/
 
 前端效果图：
 
-![](C:\Users\从传领\AppData\Roaming\marktext\images\2026-03-02-23-09-12-image.png)
+![front-pic.png](C:\Users\从传领\Desktop\beliveOnly\progress-bar\images\front-pic.png)
