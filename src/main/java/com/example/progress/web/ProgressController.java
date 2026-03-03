@@ -18,25 +18,63 @@ public class ProgressController {
     }
 
     @GetMapping("/status")
-    public ProgressState getStatus() {
-        return progressService.getCurrentState();
+    public ResponseEntity<ProgressState> getStatus(@RequestParam("token") String token) {
+        if (token == null || token.isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(progressService.getCurrentState(token.trim()));
     }
 
     @PostMapping("/config")
-    public ResponseEntity<ProgressState> updateConfig(@RequestBody ProgressState request) {
+    public ResponseEntity<ProgressState> updateConfig(@RequestParam("token") String token,
+                                                      @RequestBody ProgressState request) {
+        if (token == null || token.isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         if (request.getBehaviorName() == null || request.getBehaviorName().isBlank()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         if (request.getStepPercent() <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        ProgressState state = progressService.updateConfig(request.getBehaviorName(), request.getStepPercent());
+        ProgressState state = progressService.updateConfig(token.trim(), request.getBehaviorName(), request.getStepPercent());
         return ResponseEntity.ok(state);
     }
 
     @PostMapping("/click")
-    public ProgressState clickOnce() {
-        return progressService.clickOnce();
+    public ResponseEntity<ProgressState> clickOnce(@RequestParam("token") String token) {
+        if (token == null || token.isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        return ResponseEntity.ok(progressService.clickOnce(token.trim()));
+    }
+
+    /**
+     * 注册一个新的令牌
+     */
+    public static class TokenRegisterRequest {
+        private String token;
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+    }
+
+    @PostMapping("/token/register")
+    public ResponseEntity<ProgressState> registerToken(@RequestBody TokenRegisterRequest request) {
+        if (request == null || request.getToken() == null || request.getToken().isBlank()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        try {
+            ProgressState state = progressService.registerToken(request.getToken().trim());
+            return ResponseEntity.ok(state);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }
 

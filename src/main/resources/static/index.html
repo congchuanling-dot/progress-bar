@@ -10,7 +10,21 @@
 <div class="app">
     <h1>我的行为进度条</h1>
 
-    <section class="card">
+    <section class="card" id="loginCard">
+        <h2>登录 / 注册令牌</h2>
+        <div class="form-row">
+            <label for="tokenInput">个人令牌（用来识别你的进度）</label>
+            <input id="tokenInput" type="text" placeholder="例如：my-study-token">
+        </div>
+        <div class="btn-row">
+            <button id="loginBtn" class="btn primary">使用这个令牌登录</button>
+            <button id="registerBtn" class="btn">注册新令牌并登录</button>
+        </div>
+        <p class="hint">可以自己起一个容易记住的字符串，之后每次用同一个令牌就能看到自己的进度。</p>
+    </section>
+
+    <section class="card hidden" id="mainCard">
+        <h2>行为配置</h2>
         <h2>行为配置</h2>
         <div class="form-row">
             <label for="behaviorName">行为名称</label>
@@ -24,7 +38,7 @@
         <p class="hint">提示：修改配置后，进度会从 0% 重新开始。</p>
     </section>
 
-    <section class="card">
+    <section class="card hidden" id="progressCard">
         <h2>进度</h2>
         <p id="currentBehavior" class="behavior-text">当前行为：加载中...</p>
         <div class="progress-bar">
@@ -36,7 +50,7 @@
         <button id="clickBtn" class="btn">完成一次行为</button>
     </section>
 
-    <section class="card">
+    <section class="card hidden" id="helpCard">
         <h2>使用说明</h2>
         <ul class="usage">
             <li>在上面设置你想养成的行为和每次点击增加的百分比。</li>

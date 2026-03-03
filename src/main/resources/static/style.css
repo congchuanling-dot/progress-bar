@@ -77,6 +77,14 @@ h1 {
     transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s ease;
 }
 
+.btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
 .btn.primary {
     background: linear-gradient(135deg, #4f46e5, #6366f1);
     box-shadow: 0 10px 22px rgba(79, 70, 229, 0.37);
@@ -149,6 +157,10 @@ h1 {
     margin: 8px 0 0;
     font-size: 13px;
     color: #4b5563;
+}
+
+.hidden {
+    display: none;
 }
 
 @media (max-width: 480px) {

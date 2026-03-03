@@ -1,8 +1,19 @@
 package com.example.progress.model;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName("progress_state")
 public class ProgressState {
 
+    @TableId(type = IdType.AUTO)
     private Long id;
+
+    /**
+     * 用于区分不同用户的令牌
+     */
+    private String userToken;
 
     private String behaviorName;
     /**
@@ -24,6 +35,14 @@ public class ProgressState {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     public ProgressState() {
