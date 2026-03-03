@@ -2,6 +2,8 @@ package com.example.progress.model;
 
 public class ProgressState {
 
+    private Long id;
+
     private String behaviorName;
     /**
      * 每次点击增加的百分比 (0-100)
@@ -15,6 +17,14 @@ public class ProgressState {
      * 已完成次数
      */
     private long completedCount;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public ProgressState() {
     }

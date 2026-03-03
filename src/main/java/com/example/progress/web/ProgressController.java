@@ -1,6 +1,7 @@
 package com.example.progress.web;
 
 import com.example.progress.model.ProgressState;
+import com.example.progress.service.ProgressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class ProgressController {
 
-    private ProgressState state = new ProgressState("默认行为", 10.0);
+    private final ProgressService progressService;
+
+    public ProgressController(ProgressService progressService) {
+        this.progressService = progressService;
+    }
 
     @GetMapping("/status")
     public ProgressState getStatus() {
-        return state;
+        return progressService.getCurrentState();
     }
 
     @PostMapping("/config")
@@ -25,22 +30,13 @@ public class ProgressController {
         if (request.getStepPercent() <= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
-        state.setBehaviorName(request.getBehaviorName());
-        state.setStepPercent(request.getStepPercent());
-        state.setProgressPercent(0.0);
-        state.setCompletedCount(0);
+        ProgressState state = progressService.updateConfig(request.getBehaviorName(), request.getStepPercent());
         return ResponseEntity.ok(state);
     }
 
     @PostMapping("/click")
     public ProgressState clickOnce() {
-        double newProgress = state.getProgressPercent() + state.getStepPercent();
-        if (newProgress > 100.0) {
-            newProgress = 100.0;
-        }
-        state.setProgressPercent(newProgress);
-        state.setCompletedCount(state.getCompletedCount() + 1);
-        return state;
+        return progressService.clickOnce();
     }
 }
 
